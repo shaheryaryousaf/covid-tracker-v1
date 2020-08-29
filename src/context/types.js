@@ -1,0 +1,3 @@
+export const FETCH_STATS = "FETCH_STATS";
+export const GET_COUNTRY_STATS = "GET_COUNTRY_STATS";
+export const SET_LOADING = "SET_LOADING";
