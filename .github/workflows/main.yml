@@ -1,0 +1,28 @@
+name: Automate React App Deployment on Surge
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: 12
+      
+      - name: npm/yarn/pnpm install
+        uses: Jaid/action-npm-install@v1.2.4
+        with:
+          cmd: install
+      
+      - name: Creating Build
+        run: npm run build 
+      
+      - name: Installing Surge
+        run: npm install -g surge
+        
+      - name: Depoly on Surge
+        run: surge ./build covid19-tracker-007.surge.sh --token ${{ secrets.SURGE_TOKEN }}
